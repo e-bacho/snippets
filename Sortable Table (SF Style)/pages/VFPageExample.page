@@ -2,6 +2,20 @@
 	<apex:stylesheet value="{!URLFOR($Resource.YOURSTATICRESOURCENAME, 'sortableTable.css')}"/>
 	<apex:includeScript value="{!URLFOR($Resource.YOURSTATICRESOURCENAME, 'sortableTable.js')}"/>
 
+	<script>
+		function reinitSortableTable()
+		{
+			// re-init sortable tables after re-render
+			forEach(document.getElementsByTagName('table'), function(table)
+			{
+				if (table.className.search(/\bsortable\b/) != -1)
+				{
+					sorttable.makeSortable(table);
+				}
+			});
+		}
+	</script>
+
 	<apex:sectionHeader title="YOURTITLE" subtitle="YOURSUBTITLE" />
 	<apex:form >
 		<apex:pageBlock title="YOURTITLE" mode="detail">
