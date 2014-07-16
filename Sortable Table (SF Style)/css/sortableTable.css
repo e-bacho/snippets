@@ -1,0 +1,17 @@
+.asc, .desc
+{
+	background-color: transparent;
+	background-image: url("/img/alohaSkin/sortArrows_sprite.png");
+	background-repeat: no-repeat;
+	width: 11px;
+	height: 11px;
+	margin: 0px 5px;
+	vertical-align: -2px;
+	display: inline;
+	border: 0 none;
+}
+
+.asc
+{
+	background-position: 0 -16px;
+}

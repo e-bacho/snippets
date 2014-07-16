@@ -1,0 +1,30 @@
+<apex:page controller="YOURCONTROLLER" showHeader="true" sidebar="true" standardStylesheets="true">
+	<apex:stylesheet value="{!URLFOR($Resource.YOURSTATICRESOURCENAME, 'sortableTable.css')}"/>
+	<apex:includeScript value="{!URLFOR($Resource.YOURSTATICRESOURCENAME, 'sortableTable.js')}"/>
+
+	<apex:sectionHeader title="YOURTITLE" subtitle="YOURSUBTITLE" />
+	<apex:form >
+		<apex:pageBlock title="YOURTITLE" mode="detail">
+			 <apex:pageBlockButtons >
+				<apex:commandButton action="{!Save}" value="Save"/>
+				<apex:commandButton action="{!Cancel}" value="Cancel"/>
+			</apex:pageBlockButtons>
+				<table class="list sortable" width="100%" cellpadding="0" cellspacing="0">
+					<tr class="headerRow" >
+						<th class="sorttable_nosort" style="width: 25%;">Header 1 Title</th>
+						<th style="width: 25%;">Header 2 Title</th>
+						<th style="width: 25%;">Header 3 Title</th>
+						<th style="width: 25%;">Header 4 Title</th>
+					</tr>
+					<apex:repeat value="{!YOURLIST}" var="row">
+						<tr class="dataRow even first">
+							<td><apex:outputText value="{!row.YOUROBJECT.YOURFIELD1}"/></td>
+							<td><apex:outputText value="{!row.YOUROBJECT.YOURFIELD2}"/></td>
+							<td><apex:outputText value="{!row.YOUROBJECT.YOURFIELD3}"/></td>
+							<td><apex:outputText value="{!row.YOUROBJECT.YOURFIELD4}"/></td>
+						</tr>
+					</apex:repeat>
+				</table>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>
