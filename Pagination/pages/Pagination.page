@@ -1,0 +1,39 @@
+<apex:actionFunction name="swapPage" action="{!swapPage}" rerender="form" status="selectAllActionStatus" oncomplete="reinitSortableTable();">
+	<apex:param value="" name="action" />
+</apex:actionFunction>
+
+<apex:outputPanel layout="none" rendered="{!LIST.size > ROWSPERPAGE}">
+<div class="listViewport">
+	<div class="bottomNav" style="border-top: 3px;">
+		<div class="paginator">
+			<style>.prevNext img { margin-top: -3px !important; }</style>
+			<span class="left">Showing Results {!((LISTCURRENTPAGE - 1) * ROWSPERPAGE) + 1} - {!IF((((LISTCURRENTPAGE - 1) * ROWSPERPAGE) + ROWSPERPAGE) < LIST.size, (((LISTCURRENTPAGE - 1) * ROWSPERPAGE) + ROWSPERPAGE), LIST.size)} of {!LIST.size}</span>
+			<span class="prevNextLinks">
+				<apex:outputPanel layout="none" rendered="{!LISTCURRENTPAGE = 1}">
+					<span class="prevNext"><img src="/s.gif" class="firstoff" alt="First Page" /></span>
+					<span class="prevNext"><img src="/s.gif" class="prevoff" alt="Previous" />&nbsp;Previous</span>
+				</apex:outputPanel>
+				<apex:outputPanel layout="none" rendered="{!LISTCURRENTPAGE > 1}">
+					<span class="prevNext"><a href="javascript:swapPage('first');"><img src="/s.gif" class="first" alt="First Page" /></a></span>
+					<span class="prevNext"><a href="javascript:swapPage('prev');"><img src="/s.gif" class="prev" alt="Previous" />&nbsp;Previous</a></span>
+				</apex:outputPanel>
+				<apex:outputPanel layout="none" rendered="{!LISTCURRENTPAGE < productsTotalPages}">
+					<span class="prevNext"><a href="javascript:swapPage('next');">Next&nbsp;<img src="/s.gif" class="next" alt="Next" /></a></span>
+					<span class="prevNext"><a href="javascript:swapPage('last');"><img src="/s.gif" class="last" alt="Last Page" /></a></span>
+				</apex:outputPanel>
+				<apex:outputPanel layout="none" rendered="{!LISTCURRENTPAGE = productsTotalPages}">
+					<span class="prevNext">Next&nbsp;<img src="/s.gif" class="nextoff" alt="Next" /></span>
+					<span class="prevNext"><img src="/s.gif" class="lastoff" alt="Last Page" /></span>
+				</apex:outputPanel>
+			</span>
+			<span class="right">Page {!LISTCURRENTPAGE} of {!LISTTOTALPAGES}</span>
+		</div>
+	</div>
+</div>
+</apex:outputPanel>
+
+<apex:actionStatus id="selectAllActionStatus">
+	<apex:facet name="start">
+		&nbsp;<img src="/img/loading.gif" width="16" height="16" style="padding-left: 5px; padding-right: 5px;" />Please Wait...
+	</apex:facet>
+</apex:actionStatus>
